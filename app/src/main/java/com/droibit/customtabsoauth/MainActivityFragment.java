@@ -3,18 +3,17 @@ package com.droibit.customtabsoauth;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.support.customtabs.CustomTabsIntent;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
-import android.text.Html;
 import android.text.SpannableStringBuilder;
 import android.text.style.ClickableSpan;
 import android.text.style.URLSpan;
 import android.util.Log;
-import android.util.Patterns;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -26,9 +25,6 @@ import com.droibit.customtabsoauth.network.GithubClient;
 import com.droibit.customtabsoauth.network.PocketClient;
 import com.squareup.okhttp.OkHttpClient;
 
-import org.json.JSONException;
-
-import java.io.IOException;
 import java.util.Map;
 
 /**
@@ -147,17 +143,20 @@ public class MainActivityFragment extends Fragment {
         tabsIntent.launchUrl(getActivity(), uri);
     }
 
-    private void launchCustomTabsWithMenu(Uri uri) {
-        final Intent menuIntent = new Intent(Intent.ACTION_SEND)
+    private void launchCustomTabsWithActionMenu(Uri uri) {
+        final Intent intent = new Intent(Intent.ACTION_SEND)
                                     .setType("text/plain")
                                     .putExtra(Intent.EXTRA_TEXT, uri.toString());
-        final PendingIntent pendingIntent = PendingIntent.getActivity(getContext(), 0, menuIntent, 0);
+        final PendingIntent pendingIntent = PendingIntent.getActivity(getContext(), 0, intent, 0);
+        
+        final Bitmap icon = BitmapFactory.decodeResource(getResources(), R.drawable.ic_action_share);
 
         final CustomTabsIntent tabsIntent = new CustomTabsIntent.Builder()
                 .setShowTitle(true)
                 .setToolbarColor(getResources().getColor(R.color.primary))
                 .setCloseButtonIcon(BitmapFactory.decodeResource(getResources(), R.drawable.ic_arrow_back))
                 .addMenuItem(getString(R.string.action_share), pendingIntent)
+                .setActionButton(icon, getString(R.string.action_share), pendingIntent)
                 .build();
         tabsIntent.launchUrl(getActivity(), uri);
     }
@@ -182,7 +181,7 @@ public class MainActivityFragment extends Fragment {
         int flags = strBuilder.getSpanFlags(span);
         ClickableSpan clickable = new ClickableSpan() {
             @Override public void onClick(View view) {
-                launchCustomTabsWithMenu(Uri.parse(span.getURL()));
+                launchCustomTabsWithActionMenu(Uri.parse(span.getURL()));
             }
         };
         strBuilder.setSpan(clickable, start, end, flags);
