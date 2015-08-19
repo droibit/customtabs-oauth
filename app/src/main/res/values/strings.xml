@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">CustomTabsOAuth</string>
+    <string name="action_settings">Settings</string>
+    <string name="action_share">Share</string>
+    <string name="button_oauth_pocket">OAuth Pocket</string>
+    <string name="button_oauth_github">OAuth Github</string>
+    <string name="linkable_text">Reference: https://developer.chrome.com/multidevice/android/customtabs</string>
+</resources>
