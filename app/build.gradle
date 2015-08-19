@@ -29,5 +29,4 @@ dependencies {
     compile 'com.android.support:appcompat-v7:23.0.0'
     compile 'com.android.support:customtabs:23.0.0'
     compile 'com.squareup.okhttp:okhttp:2.4.0'
-    compile 'org.twitter4j:twitter4j-core:4.0.4'
 }

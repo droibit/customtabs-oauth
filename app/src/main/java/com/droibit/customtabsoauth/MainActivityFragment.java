@@ -148,7 +148,7 @@ public class MainActivityFragment extends Fragment {
                                     .setType("text/plain")
                                     .putExtra(Intent.EXTRA_TEXT, uri.toString());
         final PendingIntent pendingIntent = PendingIntent.getActivity(getContext(), 0, intent, 0);
-        
+
         final Bitmap icon = BitmapFactory.decodeResource(getResources(), R.drawable.ic_action_share);
 
         final CustomTabsIntent tabsIntent = new CustomTabsIntent.Builder()
