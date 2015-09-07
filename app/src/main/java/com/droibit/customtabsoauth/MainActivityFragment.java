@@ -136,8 +136,8 @@ public class MainActivityFragment extends Fragment {
         final CustomTabsIntent tabsIntent = new CustomTabsIntent.Builder()
                 .setShowTitle(true)
                 .setToolbarColor(getResources().getColor(R.color.primary))
-//                .setStartAnimations(getActivity(), R.anim.slide_in_right, R.anim.slide_out_left)
-//                .setExitAnimations(getActivity(), R.anim.slide_in_left, R.anim.slide_out_right)
+                .setStartAnimations(getActivity(), R.anim.slide_in_right, R.anim.slide_out_left)
+                .setExitAnimations(getActivity(), android.R.anim.slide_in_left, android.R.anim.slide_out_right)
                 .setCloseButtonIcon(BitmapFactory.decodeResource(getResources(), R.drawable.ic_arrow_back))
                 .build();
         tabsIntent.launchUrl(getActivity(), uri);
@@ -157,6 +157,8 @@ public class MainActivityFragment extends Fragment {
                 .setCloseButtonIcon(BitmapFactory.decodeResource(getResources(), R.drawable.ic_arrow_back))
                 .addMenuItem(getString(R.string.action_share), pendingIntent)
                 .setActionButton(icon, getString(R.string.action_share), pendingIntent)
+                .setStartAnimations(getActivity(), R.anim.slide_in_right, R.anim.slide_out_left)
+                .setExitAnimations(getActivity(), android.R.anim.slide_in_left, android.R.anim.slide_out_right)
                 .build();
         tabsIntent.launchUrl(getActivity(), uri);
     }
