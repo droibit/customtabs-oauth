@@ -10,6 +10,7 @@ import android.os.AsyncTask;
 import android.support.customtabs.CustomTabsIntent;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
+import android.support.v4.content.ContextCompat;
 import android.text.SpannableStringBuilder;
 import android.text.style.ClickableSpan;
 import android.text.style.URLSpan;
@@ -67,7 +68,6 @@ public class MainActivityFragment extends Fragment {
 
         mTextView = ((TextView) view.findViewById(android.R.id.text1));
         setTextViewHTML(mTextView);
-
 
         view.findViewById(R.id.oauth_pocket).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -135,7 +135,7 @@ public class MainActivityFragment extends Fragment {
     private void launchCustomTabs(Uri uri) {
         final CustomTabsIntent tabsIntent = new CustomTabsIntent.Builder()
                 .setShowTitle(true)
-                .setToolbarColor(getResources().getColor(R.color.primary))
+                .setToolbarColor(ContextCompat.getColor(getContext(), R.color.primary))
                 .setStartAnimations(getActivity(), R.anim.slide_in_right, R.anim.slide_out_left)
                 .setExitAnimations(getActivity(), android.R.anim.slide_in_left, android.R.anim.slide_out_right)
                 .setCloseButtonIcon(BitmapFactory.decodeResource(getResources(), R.drawable.ic_arrow_back))
@@ -153,12 +153,13 @@ public class MainActivityFragment extends Fragment {
 
         final CustomTabsIntent tabsIntent = new CustomTabsIntent.Builder()
                 .setShowTitle(true)
-                .setToolbarColor(getResources().getColor(R.color.primary))
+                .setToolbarColor(ContextCompat.getColor(getContext(), R.color.primary))
                 .setCloseButtonIcon(BitmapFactory.decodeResource(getResources(), R.drawable.ic_arrow_back))
                 .addMenuItem(getString(R.string.action_share), pendingIntent)
                 .setActionButton(icon, getString(R.string.action_share), pendingIntent)
                 .setStartAnimations(getActivity(), R.anim.slide_in_right, R.anim.slide_out_left)
                 .setExitAnimations(getActivity(), android.R.anim.slide_in_left, android.R.anim.slide_out_right)
+                .enableUrlBarHiding()
                 .build();
         tabsIntent.launchUrl(getActivity(), uri);
     }
