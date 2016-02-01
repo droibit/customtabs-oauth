@@ -5,4 +5,5 @@
     <string name="button_oauth_pocket">OAuth Pocket</string>
     <string name="button_oauth_github">OAuth Github</string>
     <string name="linkable_text">Reference: https://developer.chrome.com/multidevice/android/customtabs</string>
+    <string name="warmup_text">Warm up customtabs link</string>
 </resources>
