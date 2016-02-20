@@ -21,7 +21,13 @@
 
     <Button
         android:id="@+id/launch_nosession"
-        android:text="Lanch dev page(No Session)"
+        android:text="Lanch dev page (No Warm up)"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <Button
+        android:id="@+id/launch_session"
+        android:text="Lanch dev page (Warm up)"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 

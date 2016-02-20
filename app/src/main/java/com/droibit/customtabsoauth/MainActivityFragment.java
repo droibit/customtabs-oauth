@@ -106,6 +106,12 @@ public class MainActivityFragment extends Fragment implements CustomTabActivityH
                 launchCustomTabsWithActionMenu(null, Uri.parse(sDevPageUrl));
             }
         });
+        view.findViewById(R.id.launch_session).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                launchCustomTabsWithActionMenu(mCustomTabActivityHelper.getSession(), Uri.parse(sDevPageUrl));
+            }
+        });
     }
 
     @Override
@@ -229,7 +235,7 @@ public class MainActivityFragment extends Fragment implements CustomTabActivityH
         ClickableSpan clickable = new ClickableSpan() {
             @Override
             public void onClick(View view) {
-                launchCustomTabsWithActionMenu(mCustomTabActivityHelper.getSession(), Uri.parse(span.getURL()));
+                launchCustomTabsWithActionMenu(null, Uri.parse(span.getURL()));
             }
         };
         strBuilder.setSpan(clickable, start, end, flags);
@@ -239,7 +245,6 @@ public class MainActivityFragment extends Fragment implements CustomTabActivityH
     @Override
     public void onCustomTabsConnected() {
         Log.d(BuildConfig.BUILD_TYPE, "Connected custom tabs service.");
-
 
         if (mCustomTabActivityHelper.mayLaunchUrl(Uri.parse(sDevPageUrl), null, null)) {
             Toast.makeText(getContext(), "Connected custom tabs service, and warm up OK.", Toast.LENGTH_SHORT).show();
