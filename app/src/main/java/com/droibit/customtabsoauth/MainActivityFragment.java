@@ -183,6 +183,7 @@ public class MainActivityFragment extends Fragment implements CustomTabActivityH
     private void launchCustomTabs(Uri uri) {
         final CustomTabsIntent tabsIntent = new CustomTabsIntent.Builder()
                 .setShowTitle(true)
+                .addDefaultShareMenuItem()
                 .setToolbarColor(ContextCompat.getColor(getContext(), R.color.primary))
                 .setStartAnimations(getContext(), R.anim.slide_in_right, R.anim.slide_out_left)
                 .setExitAnimations(getContext(), android.R.anim.slide_in_left, android.R.anim.slide_out_right)
@@ -202,12 +203,18 @@ public class MainActivityFragment extends Fragment implements CustomTabActivityH
         final CustomTabsIntent tabsIntent = new CustomTabsIntent.Builder(session)
                 .setShowTitle(true)
                 .setToolbarColor(ContextCompat.getColor(getContext(), R.color.primary))
+                .setSecondaryToolbarColor(ContextCompat.getColor(getContext(), android.R.color.holo_red_dark))
                 .setCloseButtonIcon(BitmapFactory.decodeResource(getResources(), R.drawable.ic_arrow_back))
                 .addMenuItem(getString(R.string.action_share), pendingIntent)
                 .setActionButton(icon, getString(R.string.action_share), pendingIntent)
                 .setStartAnimations(getContext(), R.anim.slide_in_right, R.anim.slide_out_left)
                 .setExitAnimations(getContext(), android.R.anim.slide_in_left, android.R.anim.slide_out_right)
                 .enableUrlBarHiding()
+                .addToolbarItem(1, icon, getString(R.string.action_share), pendingIntent)
+                .addToolbarItem(2, icon, getString(R.string.action_share), pendingIntent)
+                .addToolbarItem(3, icon, getString(R.string.action_share), pendingIntent)
+                .addToolbarItem(4, icon, getString(R.string.action_share), pendingIntent)
+                .addToolbarItem(5, icon, getString(R.string.action_share), pendingIntent)
                 .build();
 
 //        tabsIntent.launchUrl(getActivity(), uri);
