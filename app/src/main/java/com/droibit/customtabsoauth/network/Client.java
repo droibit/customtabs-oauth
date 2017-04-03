@@ -2,13 +2,10 @@ package com.droibit.customtabsoauth.network;
 
 import android.net.Uri;
 
-import com.squareup.okhttp.MediaType;
-
 import java.util.Map;
 
-/**
- * Created by kumagai on 2015/08/19.
- */
+import okhttp3.MediaType;
+
 public interface Client {
 
     String KEY_USER_NAME = "username";

@@ -26,11 +26,12 @@ import android.widget.Toast;
 import com.droibit.customtabsoauth.network.Client;
 import com.droibit.customtabsoauth.network.GithubClient;
 import com.droibit.customtabsoauth.network.PocketClient;
-import com.squareup.okhttp.OkHttpClient;
 
 import org.chromium.customtabsclient.shared.CustomTabActivityHelper;
 
 import java.util.Map;
+
+import okhttp3.OkHttpClient;
 
 /**
  * A placeholder fragment containing a simple view.
@@ -49,18 +50,12 @@ public class MainActivityFragment extends Fragment implements CustomTabActivityH
 
     private CustomTabActivityHelper mCustomTabActivityHelper;
 
-    public MainActivityFragment() {
-    }
 
-
-    /**
-     * {@inheritDoc}
-     */
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
 
-        mOkHttpClient = new OkHttpClient();
+        mOkHttpClient = new OkHttpClient.Builder().build();
         mPocket = new PocketClient(context, mOkHttpClient);
         mGithub = new GithubClient(context, mOkHttpClient);
 
@@ -69,18 +64,12 @@ public class MainActivityFragment extends Fragment implements CustomTabActivityH
 
     }
 
-    /**
-     * {@inheritDoc}
-     */
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         return inflater.inflate(R.layout.fragment_main, container, false);
     }
 
-    /**
-     * {@inheritDoc}
-     */
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);

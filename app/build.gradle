@@ -28,5 +28,5 @@ dependencies {
 
     compile "com.android.support:appcompat-v7:$support_library_version"
     compile "com.android.support:customtabs:$support_library_version"
-    compile 'com.squareup.okhttp:okhttp:2.7.2'
+    compile 'com.squareup.okhttp3:okhttp:3.6.0'
 }

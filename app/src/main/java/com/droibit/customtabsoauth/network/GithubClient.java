@@ -4,11 +4,6 @@ import android.content.Context;
 import android.net.Uri;
 
 import com.droibit.customtabsoauth.R;
-import com.squareup.okhttp.MediaType;
-import com.squareup.okhttp.OkHttpClient;
-import com.squareup.okhttp.Request;
-import com.squareup.okhttp.RequestBody;
-import com.squareup.okhttp.Response;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -17,9 +12,12 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
-/**
- * Created by kumagai on 2015/08/19.
- */
+import okhttp3.MediaType;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.RequestBody;
+import okhttp3.Response;
+
 public class GithubClient implements Client {
 
     private static final String URL_AUTH = "https://github.com/login/oauth/authorize";

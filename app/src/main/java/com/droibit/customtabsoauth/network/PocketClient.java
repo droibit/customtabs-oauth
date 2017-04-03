@@ -5,11 +5,6 @@ import android.net.Uri;
 import android.preference.PreferenceManager;
 
 import com.droibit.customtabsoauth.R;
-import com.squareup.okhttp.MediaType;
-import com.squareup.okhttp.OkHttpClient;
-import com.squareup.okhttp.Request;
-import com.squareup.okhttp.RequestBody;
-import com.squareup.okhttp.Response;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -18,9 +13,11 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
-/**
- * @auther kumagai
- */
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.RequestBody;
+import okhttp3.Response;
+
 public class PocketClient implements Client {
 
     private static final String URL_REQUEST = "https://getpocket.com/v3/oauth/request";
@@ -44,14 +41,14 @@ public class PocketClient implements Client {
     @Override
     public Uri requestToken() throws Exception {
         final String requestJson = new JSONObject()
-                                    .put(KEY_CONSUMER_KEY, mContext.getString(R.string.pocket_consumer_key))
-                                    .put(KEY_REDIRECT_URI, mContext.getString(R.string.pocket_redirect))
-                                    .toString();
+                .put(KEY_CONSUMER_KEY, mContext.getString(R.string.pocket_consumer_key))
+                .put(KEY_REDIRECT_URI, mContext.getString(R.string.pocket_redirect))
+                .toString();
         final Request request = new Request.Builder()
-                                    .addHeader(X_ACCEPT, CONTENT_JSON.toString())
-                                    .url(URL_REQUEST)
-                                    .post(RequestBody.create(CONTENT_JSON, requestJson))
-                                    .build();
+                .addHeader(X_ACCEPT, CONTENT_JSON.toString())
+                .url(URL_REQUEST)
+                .post(RequestBody.create(CONTENT_JSON, requestJson))
+                .build();
 
         final Response response = mOkHttpClient.newCall(request).execute();
         if (!response.isSuccessful()) {
@@ -62,8 +59,8 @@ public class PocketClient implements Client {
         final String code = tokenResponseJson.get(KEY_CODE).toString();
 
         PreferenceManager.getDefaultSharedPreferences(mContext).edit()
-                         .putString(KEY_CODE, code)
-                         .apply();
+                .putString(KEY_CODE, code)
+                .apply();
 
         return Uri.parse(URL_OAUTH)
                 .buildUpon()
